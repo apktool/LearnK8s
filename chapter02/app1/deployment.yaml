@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: app-demo
+  name: chapter-02-app01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-app-01
+  template:
+    metadata:
+      labels:
+        app: flask-app-01
+        version: v1
+    spec:
+      containers:
+      - name: flask-app
+        image: flask-app1:v1
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
